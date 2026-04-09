@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top left, #2a2a72 0%, #1f1f3e 45%, #0f0f1e 100%);
+    color: #f4f7ff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.page-shell {
+    width: min(560px, 100%);
+    background: rgba(15, 23, 68, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    padding: 36px;
+    backdrop-filter: blur(12px);
+}
+
+h1 {
+    font-size: clamp(2rem, 2.4vw, 3rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+}
+
+p,
+label {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #dce4ff;
+}
+
+form {
+    display: grid;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: #eef2ff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(226, 232, 255, 0.6);
+}
+
+input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #7c3aed;
+}
+
+button {
+    cursor: pointer;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    box-shadow: 0 14px 28px rgba(34, 51, 126, 0.24);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 34px rgba(34, 51, 126, 0.28);
+}
+
+.status-text {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer {
+    margin-top: 28px;
+    font-size: 0.92rem;
+    opacity: 0.75;
+    text-align: center;
+    color: #b5b8d0;
+}
