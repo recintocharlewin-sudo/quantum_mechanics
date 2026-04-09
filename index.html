@@ -20,5 +20,22 @@
             Secure access demo — powered by Express.js
         </footer>
     </main>
+
+    <audio id="bg-audio" src="Libu-Libong%20Buwan%20(Uuwian).mp3" autoplay loop></audio>
+
+    <script>
+        const audio = document.getElementById('bg-audio');
+        const resumeAudio = () => {
+            if (audio && audio.paused) {
+                audio.play().catch(() => {
+                    // Autoplay may be blocked; wait for user interaction
+                });
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', resumeAudio);
+        window.addEventListener('click', resumeAudio, { once: true });
+        window.addEventListener('keydown', resumeAudio, { once: true });
+    </script>
 </body>
 </html>
