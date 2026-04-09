@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 // Correct name
-const correctName = "winwin"; // change this
+const correctName = "Heart Angela P. Vita"; // change this
 
 // Route for form submission
 app.post("/check", (req, res) => {

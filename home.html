@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <div class="hearts-container" id="hearts-container"></div>
+    
     <main class="page-shell">
         <h1>Is Love Quantum Mechanics?</h1>
         <pre class="status-text">Love exist in different ways and forms
@@ -56,6 +58,26 @@ Thank you for being with me, my favorite Paradox</pre>
         document.addEventListener('DOMContentLoaded', resumeAudio);
         window.addEventListener('click', resumeAudio, { once: true });
         window.addEventListener('keydown', resumeAudio, { once: true });
+
+        // Create floating hearts
+        const createHearts = () => {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 4 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                container.appendChild(heart);
+            }
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', createHearts);
+        } else {
+            createHearts();
+        }
     </script>
 </body>
 </html>
