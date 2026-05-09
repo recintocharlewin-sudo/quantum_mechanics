@@ -217,6 +217,16 @@ footer {
     position: relative;
     overflow: hidden;
 }
+.cosmic-shell {
+    min-height: 100vh;
+    /* account for body padding (24px left/right) so this fills visually */
+    width: calc(100vw - 48px);
+    padding: 48px 24px;
+    background: radial-gradient(ellipse at bottom, #02021a 0%, #050529 28%, #000814 100%);
+    position: relative;
+    overflow: visible;
+    max-width: none;
+}
 
 .stars {
     position: absolute;
@@ -236,6 +246,14 @@ footer {
     margin: 0 auto;
     max-width: 1280px;
     perspective: 1400px;
+}
+.polaroid-stage {
+    position: absolute;
+    left: 24px; /* align with the shell padding */
+    top: 140px; /* leave space for header */
+    width: calc(100% - 48px);
+    height: calc(100vh - 220px);
+    margin: 0;
 }
 
 .polaroid {
@@ -278,6 +296,20 @@ footer {
 .polaroid.pos12 { left: 34%; top: 58%; --r:-6deg; --w:220px; --s:1.02; }
 .polaroid.pos13 { left: 56%; top: 64%; --r:10deg; --w:200px; --s:0.96; }
 .polaroid.pos14 { left: 76%; top: 70%; --r:-8deg; --w:230px; --s:1.04; }
+.polaroid.pos1 { left: -6%; top: 4%; --r:-18deg; --w:260px; --s:1.04; }
+.polaroid.pos2 { left: 8%; top: 2%; --r:8deg; --w:220px; --s:1; }
+.polaroid.pos3 { left: 26%; top: 6%; --r:-6deg; --w:200px; --s:0.96; }
+.polaroid.pos4 { left: 44%; top: 3%; --r:12deg; --w:240px; --s:1.05; }
+.polaroid.pos5 { left: 62%; top: 6%; --r:-10deg; --w:210px; --s:1; }
+.polaroid.pos6 { left: 78%; top: 18%; --r:6deg; --w:200px; --s:0.98; }
+.polaroid.pos7 { left: 4%; top: 32%; --r:14deg; --w:230px; --s:1.04; }
+.polaroid.pos8 { left: 22%; top: 32%; --r:-10deg; --w:210px; --s:1; }
+.polaroid.pos9 { left: 40%; top: 36%; --r:16deg; --w:200px; --s:0.98; }
+.polaroid.pos10 { left: 58%; top: 40%; --r:-18deg; --w:220px; --s:1; }
+.polaroid.pos11 { left: 76%; top: 52%; --r:4deg; --w:210px; --s:1; }
+.polaroid.pos12 { left: 6%; top: 66%; --r:-6deg; --w:220px; --s:1.02; }
+.polaroid.pos13 { left: 34%; top: 70%; --r:10deg; --w:200px; --s:0.96; }
+.polaroid.pos14 { left: 72%; top: 78%; --r:-8deg; --w:230px; --s:1.04; }
 
 @media (max-width:900px) {
     .polaroid { width: 160px; }
@@ -288,4 +320,62 @@ footer {
     .polaroid-stage { height: auto; padding-bottom: 40px; }
     .polaroid { position: relative; left: auto; top: auto; margin: 10px auto; transform: rotate(0); }
     .polaroid-grid-responsive { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+}
+
+/* Viewer overlay and flip card */
+.viewer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(1,6,25,0.45);
+    display: block;
+}
+
+.viewer-clone {
+    position: absolute;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 60px 120px rgba(2,6,23,0.9);
+}
+
+.flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(.2,.9,.25,1);
+    cursor: pointer;
+}
+
+.flip-card .front,
+.flip-card .back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.flip-card .front img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.flip-card .back {
+    transform: rotateY(180deg);
+    background: linear-gradient(180deg,#071028 0%, #041026 100%);
+    color: #e7f0ff;
+    padding: 18px;
+    text-align: center;
+}
+
+.flip-card.flipped { transform: rotateY(180deg); }
+
+.back-message { font-size: 1.05rem; line-height:1.4; }
+
+/* Smooth transition for the clone moving */
+.viewer-clone { transition: left 360ms cubic-bezier(.2,.9,.25,1), top 360ms cubic-bezier(.2,.9,.25,1), width 360ms cubic-bezier(.2,.9,.25,1), height 360ms cubic-bezier(.2,.9,.25,1); }
+
+@media (max-width:700px) {
+    .viewer-clone { border-radius: 8px; }
+    .back-message { font-size: 0.96rem; padding:12px; }
 }

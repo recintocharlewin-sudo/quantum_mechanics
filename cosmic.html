@@ -36,5 +36,88 @@
             <a href="selection.html" style="color:inherit; text-decoration:underline;">Back to selection</a>
         </footer>
     </main>
+    <script>
+        (function(){
+            // Prevent multiple viewers
+            function isViewerOpen(){ return document.querySelector('.viewer-overlay') !== null; }
+
+            function openViewer(figure){
+                if(isViewerOpen()) return;
+                const img = figure.querySelector('img');
+                const caption = (figure.querySelector('.caption') || {}).innerText || '';
+                const srcRect = img.getBoundingClientRect();
+
+                const overlay = document.createElement('div'); overlay.className = 'viewer-overlay';
+                const clone = document.createElement('div'); clone.className = 'viewer-clone';
+
+                // flip-card structure
+                const flip = document.createElement('div'); flip.className = 'flip-card';
+                const front = document.createElement('div'); front.className = 'front';
+                const back = document.createElement('div'); back.className = 'back';
+
+                const imgEl = document.createElement('img'); imgEl.src = img.src; imgEl.alt = img.alt || '';
+                front.appendChild(imgEl);
+                const backMsg = document.createElement('div'); backMsg.className = 'back-message'; backMsg.textContent = caption;
+                back.appendChild(backMsg);
+
+                flip.appendChild(front); flip.appendChild(back);
+                clone.appendChild(flip);
+                overlay.appendChild(clone);
+                document.body.appendChild(overlay);
+
+                // set starting position to image's rect
+                clone.style.left = `${srcRect.left}px`;
+                clone.style.top = `${srcRect.top}px`;
+                clone.style.width = `${srcRect.width}px`;
+                clone.style.height = `${srcRect.height}px`;
+
+                // prevent overlay click from immediately closing when clicking the clone
+                clone.addEventListener('click', function(e){ e.stopPropagation(); });
+
+                // compute target (centered)
+                const vw = Math.min(window.innerWidth * 0.72, 840);
+                const vh = vw * 0.66;
+                const left = Math.max(12, (window.innerWidth - vw)/2);
+                const top = Math.max(80, (window.innerHeight - vh)/2);
+
+                // allow browser to paint starting position
+                requestAnimationFrame(()=>{
+                    clone.style.left = `${left}px`;
+                    clone.style.top = `${top}px`;
+                    clone.style.width = `${vw}px`;
+                    clone.style.height = `${vh}px`;
+                });
+
+                // after move finishes, enable flip on the flip-card
+                const onTransitionEnd = function(){
+                    clone.removeEventListener('transitionend', onTransitionEnd);
+                    flip.addEventListener('click', function(ev){ ev.stopPropagation(); flip.classList.toggle('flipped'); });
+                };
+                clone.addEventListener('transitionend', onTransitionEnd);
+
+                // clicking outside closes and animates back
+                overlay.addEventListener('click', function(){
+                    // remove flipped state first
+                    flip.classList.remove('flipped');
+                    // animate back to source
+                    clone.style.left = `${srcRect.left}px`;
+                    clone.style.top = `${srcRect.top}px`;
+                    clone.style.width = `${srcRect.width}px`;
+                    clone.style.height = `${srcRect.height}px`;
+                    clone.addEventListener('transitionend', function cleanup(){ overlay.remove(); });
+                });
+
+                // ESC to close
+                function escHandler(e){ if(e.key === 'Escape'){ overlay.click(); document.removeEventListener('keydown', escHandler); } }
+                document.addEventListener('keydown', escHandler);
+            }
+
+            // attach to figures
+            document.querySelectorAll('.polaroid').forEach(f => {
+                f.style.cursor = 'pointer';
+                f.addEventListener('click', function(){ openViewer(f); });
+            });
+        })();
+    </script>
 </body>
 </html>
