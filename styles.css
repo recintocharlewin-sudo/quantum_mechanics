@@ -208,3 +208,73 @@ footer {
     .lily-decor { display:none; }
     .card-grid { flex-direction:column; gap:12px; }
 }
+
+/* Cosmic gallery styles */
+.cosmic-shell {
+    min-height: 84vh;
+    padding: 48px 24px;
+    background: radial-gradient(ellipse at bottom, #02021a 0%, #050529 30%, #000814 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#fff 0.8px, transparent 0.8px);
+    background-size: 3px 3px;
+    opacity: 0.06;
+    transform: translateZ(0);
+    pointer-events: none;
+}
+
+.polaroid-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 68vh;
+    margin: 0 auto;
+}
+
+.polaroid {
+    position: absolute;
+    width: 220px;
+    background: #ffffff;
+    padding: 10px 10px 18px 10px;
+    border-radius: 8px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 6px 18px rgba(0,0,0,0.4);
+    transform-origin: center center;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.polaroid:hover { transform: translateY(-10px) scale(1.03) rotate(0deg); z-index: 40; }
+
+.polaroid img { display:block; width: 200px; height: 140px; object-fit: cover; border-radius: 4px; }
+.polaroid .caption { margin-top: 8px; font-size: 0.86rem; color: #222; text-align:center; }
+
+/* explicit scatter positions for 14 polaroids */
+.polaroid.pos1 { left: 6%; top: 8%; transform: rotate(-12deg); }
+.polaroid.pos2 { left: 28%; top: 6%; transform: rotate(8deg); }
+.polaroid.pos3 { left: 50%; top: 4%; transform: rotate(-6deg); }
+.polaroid.pos4 { left: 72%; top: 10%; transform: rotate(10deg); }
+.polaroid.pos5 { left: 12%; top: 36%; transform: rotate(6deg); }
+.polaroid.pos6 { left: 36%; top: 30%; transform: rotate(-8deg); }
+.polaroid.pos7 { left: 58%; top: 28%; transform: rotate(12deg); }
+.polaroid.pos8 { left: 80%; top: 34%; transform: rotate(-10deg); }
+.polaroid.pos9 { left: 4%; top: 64%; transform: rotate(14deg); }
+.polaroid.pos10 { left: 26%; top: 66%; transform: rotate(-14deg); }
+.polaroid.pos11 { left: 48%; top: 60%; transform: rotate(4deg); }
+.polaroid.pos12 { left: 68%; top: 62%; transform: rotate(-6deg); }
+.polaroid.pos13 { left: 38%; top: 78%; transform: rotate(10deg); }
+.polaroid.pos14 { left: 62%; top: 82%; transform: rotate(-8deg); }
+
+@media (max-width:900px) {
+    .polaroid { width: 160px; }
+    .polaroid img { width: 140px; height: 100px; }
+}
+
+@media (max-width:520px) {
+    .polaroid-stage { height: auto; padding-bottom: 40px; }
+    .polaroid { position: relative; left: auto; top: auto; margin: 10px auto; transform: rotate(0); }
+    .polaroid-grid-responsive { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+}
