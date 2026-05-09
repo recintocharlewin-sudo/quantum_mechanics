@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selection</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="flower-bg" aria-hidden="true">
+        <!-- Decorative lilies as SVGs positioned by CSS -->
+        <svg class="lily-decor left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#fff3f8"/>
+                    <stop offset="100%" stop-color="#ffd6e8"/>
+                </linearGradient>
+                <linearGradient id="g2" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#dbeafe"/>
+                    <stop offset="100%" stop-color="#c7f9ff"/>
+                </linearGradient>
+            </defs>
+            <g transform="translate(100,100)">
+                <ellipse cx="0" cy="30" rx="60" ry="20" fill="rgba(0,0,0,0.12)"/>
+                <g fill="url(#g1)">
+                    <path d="M0-6 C26 -18, 34 -42, 16 -64 C-4 -48, -10 -30, 0 -6 Z"/>
+                    <path d="M-12 2 C-32 18, -28 46, -6 62 C2 40, -2 20, -12 2 Z"/>
+                </g>
+                <g fill="url(#g2)" transform="rotate(18)">
+                    <path d="M20 -4 C46 -18, 58 -44, 40 -66 C18 -52, 6 -34, 20 -4 Z"/>
+                </g>
+            </g>
+        </svg>
+
+        <svg class="lily-decor right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(100,100)">
+                <ellipse cx="0" cy="30" rx="60" ry="20" fill="rgba(0,0,0,0.12)"/>
+                <g fill="#fff8f0">
+                    <path d="M0-6 C26 -18, 34 -42, 16 -64 C-4 -48, -10 -30, 0 -6 Z"/>
+                    <path d="M-12 2 C-32 18, -28 46, -6 62 C2 40, -2 20, -12 2 Z"/>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+    <main class="page-shell selection-shell" role="main">
+        <h1 class="selection-title">Welcome to the Garden</h1>
+        <p class="selection-sub">Choose a path — click the card to continue to the protected page.</p>
+
+        <div class="card-grid">
+            <a class="selection-card" href="home.html" title="Enter the garden and continue to Home">
+                <div>
+                    <div class="card-title">Enter the Garden</div>
+                    <div class="card-desc">Step into a calm space of lilies and light. Click to proceed to the protected home page.</div>
+                </div>
+                <div class="card-art" aria-hidden="true">
+                    <!-- small lily illustration inside the card -->
+                    <svg width="110" height="110" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cgrad" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#fff7fb"/>
+                                <stop offset="100%" stop-color="#ffd6e8"/>
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(60,60)">
+                            <path d="M0 -30 C22 -20, 32 -2, 18 12 C6 -2, -6 -12, 0 -30 Z" fill="url(#cgrad)" />
+                            <path d="M-6 -10 C-22 -6, -28 6, -12 20 C-2 4, -4 -6, -6 -10 Z" fill="#fef6f9" opacity="0.9"/>
+                            <circle cx="-2" cy="-2" r="3" fill="#ffb6d5"/>
+                        </g>
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            Made with lilies 🌸 — click the card to continue.
+        </footer>
+    </main>
+</body>
+</html>

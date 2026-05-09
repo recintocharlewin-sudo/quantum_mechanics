@@ -21,7 +21,8 @@ app.post("/check", (req, res) => {
     const userName = req.body.name;
 
     if (userName.toLowerCase() === correctName.toLowerCase()) {
-        res.sendFile(path.join(__dirname, "home.html"));
+        // when correct, send the selection page instead of going directly to home
+        res.sendFile(path.join(__dirname, "selection.html"));
     } else {
         res.send("<h1>Access Denied ❌</h1><a href='/'>Try Again</a>");
     }

@@ -146,3 +146,65 @@ footer {
     text-align: center;
     color: #b5b8d0;
 }
+
+/* Selection page styles */
+.selection-shell {
+    width: min(980px, 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));
+    border-radius: 24px;
+    padding: 48px;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.flower-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 10% 10%, rgba(255,230,240,0.06), transparent 12%), radial-gradient(circle at 90% 80%, rgba(230,245,255,0.03), transparent 14%);
+}
+
+.lily-decor {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    opacity: 0.9;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+}
+
+.lily-decor.left { left: -60px; top: 30%; transform: rotate(-12deg); }
+.lily-decor.right { right: -60px; bottom: 20%; transform: scaleX(-1) rotate(6deg); }
+
+.selection-title { font-size: clamp(1.6rem, 2.2vw, 2.4rem); margin-bottom: 8px; color: #fff; }
+.selection-sub { color: rgba(226,232,255,0.85); margin-bottom: 26px; }
+
+.card-grid { display:flex; justify-content:center; gap:24px; margin-top: 18px; }
+.selection-card {
+    width: 320px;
+    min-height: 220px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 18px 48px rgba(13, 22, 60, 0.6);
+    padding: 22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    cursor:pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    text-decoration: none;
+    color: inherit;
+}
+.selection-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 28px 72px rgba(13,22,60,0.7); }
+
+.card-title { font-weight:700; font-size:1.2rem; margin-bottom:8px; }
+.card-desc { color: rgba(226,232,255,0.8); font-size:0.98rem; line-height:1.4; }
+
+.card-art { display:flex; align-items:center; justify-content:center; margin-top: 12px; }
+
+@media (max-width:640px) {
+    .lily-decor { display:none; }
+    .card-grid { flex-direction:column; gap:12px; }
+}
